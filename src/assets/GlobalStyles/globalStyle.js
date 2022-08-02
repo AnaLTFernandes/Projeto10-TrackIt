@@ -131,7 +131,7 @@ const GlobalStyled = createGlobalStyle`
     border-spacing: 0;
   }
 
-  /* Mine Styles */
+  /* My Styles */
 
   body {
     font-weight: 400;
