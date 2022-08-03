@@ -1,11 +1,16 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+
+import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
 
 import Loading from '../Loading';
 
 import logo from '../../assets/images/logo-login.svg';
 
 export default function AcessPage({ data, onSubmit, onChange }) {
+  const { actionDisabled } = useContext(ActionsDisabledContext);
 
   return (
     <Container>
@@ -15,7 +20,7 @@ export default function AcessPage({ data, onSubmit, onChange }) {
       <form onSubmit={onSubmit}>
           {data.form.inputs.map(({ nome, type, placeholder }, index) =>(
               <input
-                  disabled={data.disabled ? true : false}
+                  disabled={actionDisabled ? true : false}
                   key={index}
                   required
                   name={nome}
@@ -25,8 +30,8 @@ export default function AcessPage({ data, onSubmit, onChange }) {
               </input>
           ))}
 
-        <button disabled={data.disabled ? true : false}>
-          {data.disabled ? <Loading size='30px'/> : data.form.textButton}
+        <button disabled={actionDisabled ? true : false}>
+          {actionDisabled ? <Loading size='30px'/> : data.form.textButton}
         </button>
 
       </form>
@@ -83,6 +88,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   span {

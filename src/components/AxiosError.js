@@ -1,18 +1,21 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import ErrorContext from "../contexts/ErrorContext";
 
-export default function AxiosError ({ error, setError, message }) {
+export default function AxiosError () {
+    const { axiosError, setAxiosError } = useContext(ErrorContext);
 
-    if (error) {
+    if (axiosError.error) {
         setTimeout(() => {
-            setError(!error);
+            setAxiosError({error:false, message:''});
         }, 2000);
     }
 
     return (
         <Alert 
-            top={error ? '30px' : '0'}
-            opacity={error ? '0.98' : '0'}
-        >{message}</Alert>
+            top={axiosError.error ? '30px' : '0'}
+            opacity={axiosError.error ? '0.98' : '0'}
+        >{axiosError.message}</Alert>
     );
 }
 

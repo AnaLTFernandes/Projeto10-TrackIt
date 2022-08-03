@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { postLogin } from '../../services/service';
-import AxiosError from '../AxiosError';
+import ErrorContext from '../../contexts/ErrorContext';
+import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
 
 import AcessPage from './AcessPage';
 
 export default function Login() {
   const [form, setForm] = useState({});
-  const [disabled, setDisabled] = useState(false);
-  const [error, setError] = useState(false);
-  const [messageError, setMessageError] = useState('');
+  const { setActionDisabled } = useContext(ActionsDisabledContext);
+  const { setAxiosError } = useContext(ErrorContext);
 
   const navigate = useNavigate();
   
@@ -27,21 +28,22 @@ export default function Login() {
       textButton:'Entrar'
     },
     span:'Não tem uma conta? Cadastre-se!',
-    linkRouter:'/cadastro',
-    disabled
+    linkRouter:'/cadastro'
   }
 
   function handleForm(event) {
     event.preventDefault();
 
-    setDisabled(true);
+    setActionDisabled(true);
     
     const promise = postLogin(form);
 
     promise.catch((e) => {
-      setMessageError(e.response.data.message);
-      setError(!error);
-      setDisabled(false);
+      setAxiosError({error:true, message:e.response.data.message});
+      
+      setTimeout(() => {
+        setActionDisabled(false);
+      }, 2100);
     });
 
     promise.then(() => navigate('/home'));
@@ -56,7 +58,6 @@ export default function Login() {
 
   return (
     <>
-      <AxiosError setError={setError} error={error} message={messageError}/>
       {dataPage
         ? <AcessPage data={dataPage} onSubmit={handleForm} 
           onChange={(e => updateForm(e.target.name, e.target.value))} /> 
