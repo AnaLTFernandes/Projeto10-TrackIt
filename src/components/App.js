@@ -5,8 +5,9 @@ import { useState } from 'react';
 
 import ActionsDisabledContext from '../contexts/ActionsDisabledContext';
 import ErrorContext from '../contexts/ErrorContext';
-import Login from './Register/LoginPage';
 import AxiosError from './AxiosError';
+import Login from './Register/LoginPage';
+import ResgisterPage from './Register/RegisterPage';
 
 function App() {
   const [axiosError, setAxiosError] = useState({error: false, message:''});
@@ -24,6 +25,7 @@ function App() {
           
           <Routes>
             <Route path='/' element={<Login />}/>
+            <Route path='/cadastro' element={<ResgisterPage />}/>
           </Routes>
 
         </ActionsDisabledContext.Provider>

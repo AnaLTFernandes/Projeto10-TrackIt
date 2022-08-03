@@ -8,7 +8,6 @@ function postSignUp (body) {
 }
 
 function postLogin (body) {
-    console.log(body)
     const promise = axios.post(`${baseUrl}/auth/login`, body);
     return promise;
 }

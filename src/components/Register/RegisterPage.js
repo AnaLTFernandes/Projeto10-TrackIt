@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { postLogin } from '../../services/service';
+import { postSignUp } from '../../services/service';
 import ErrorContext from '../../contexts/ErrorContext';
 import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
 
@@ -20,16 +20,23 @@ export default function Login() {
         name:'email',
         type:'email',
         placeholder:'email',
-        pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+.com"
       }, {
         name:'password',
         placeholder:'senha',
         type:'text',
+      }, {
+        name:'name',
+        placeholder:'nome',
+        type:'text',
+      }, {
+        name:'image',
+        placeholder:'foto',
+        type:'url',
       }],
       textButton:'Entrar'
     },
-    span:'Não tem uma conta? Cadastre-se!',
-    linkRouter:'/cadastro'
+    span:'Já tem uma conta? Faça login!',
+    linkRouter:'/'
   }
 
   function handleForm(event) {
@@ -37,7 +44,7 @@ export default function Login() {
 
     setActionDisabled(true);
     
-    const promise = postLogin(form);
+    const promise = postSignUp(form);
 
     promise.catch((e) => {
       setAxiosError({error:true, message:e.response.data.message});
@@ -47,7 +54,15 @@ export default function Login() {
       }, 2100);
     });
 
-    promise.then(() => navigate('/home'));
+    promise.then(() => {
+      setAxiosError({error:true, message:'Cadastro feito com sucesso'});
+
+      setTimeout(() => {
+        setActionDisabled(false);
+      }, 2100);
+      
+      navigate('/');
+    });
   }
 
   function updateForm(name, value) {
@@ -65,5 +80,6 @@ export default function Login() {
         : ''
       }
     </>
+
   );
 }

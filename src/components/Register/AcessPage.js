@@ -11,22 +11,23 @@ import logo from '../../assets/images/logo-login.svg';
 
 export default function AcessPage({ data, onSubmit, onChange }) {
   const { actionDisabled } = useContext(ActionsDisabledContext);
-
+  
   return (
     <Container>
 
       <img alt='trackit' src={logo}/>
 
       <form onSubmit={onSubmit}>
-          {data.form.inputs.map(({ nome, type, placeholder }, index) =>(
+          {data.form.inputs.map(({ name, type, placeholder, ...otherProps }, index) =>(
               <input
                   disabled={actionDisabled ? true : false}
                   key={index}
                   required
-                  name={nome}
+                  name={name}
                   type={type}
                   placeholder={placeholder}
-                  onChange={onChange}>
+                  onChange={onChange}
+                  {...otherProps}>
               </input>
           ))}
 
