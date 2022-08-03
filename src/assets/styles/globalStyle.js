@@ -134,6 +134,7 @@ const GlobalStyled = createGlobalStyle`
   /* My Styles */
 
   body {
+    height: 100vh;
     font-weight: 400;
     font-family: 'Lexend Deca', sans-serif;
   }
@@ -148,6 +149,10 @@ const GlobalStyled = createGlobalStyle`
   .root {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

@@ -47,7 +47,7 @@ function getHistory () {
     return promise;
 }
 
-return {
+export {
     postSignUp,
     postLogin,
     postHabit,
