@@ -60,7 +60,7 @@ export default function Login() {
       setTimeout(() => {
         setActionDisabled(false);
       }, 2100);
-      
+
       navigate('/');
     });
   }

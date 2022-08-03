@@ -3,19 +3,19 @@ import styled from "styled-components";
 import ErrorContext from "../contexts/ErrorContext";
 
 export default function AxiosError () {
-    const { axiosError, setAxiosError } = useContext(ErrorContext);
+    const { alertError, setAlertError } = useContext(ErrorContext);
 
-    if (axiosError.error) {
+    if (alertError.error) {
         setTimeout(() => {
-            setAxiosError({error:false, message:''});
+            setAlertError({error:false, message:''});
         }, 2000);
     }
 
     return (
         <Alert 
-            top={axiosError.error ? '30px' : '0'}
-            opacity={axiosError.error ? '0.98' : '0'}
-        >{axiosError.message}</Alert>
+            top={alertError.error ? '30px' : '0'}
+            opacity={alertError.error ? '0.98' : '0'}
+        >{alertError.message}</Alert>
     );
 }
 

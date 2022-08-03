@@ -47,7 +47,14 @@ export default function Login() {
       }, 2100);
     });
 
-    promise.then(() => navigate('/home'));
+    promise.then((response) => {
+      localStorage.setItem('trackit', JSON.stringify({
+        userData:{...response.data},
+        timestamp:+new Date()
+      }));
+      
+      navigate('/habitos');
+    }); // mudar para rota /hoje
   }
 
   function updateForm(name, value) {

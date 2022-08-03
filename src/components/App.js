@@ -5,12 +5,15 @@ import { useState } from 'react';
 
 import ActionsDisabledContext from '../contexts/ActionsDisabledContext';
 import ErrorContext from '../contexts/ErrorContext';
-import AxiosError from './AxiosError';
+
+import AlertError from './AlertError';
 import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
+import PrivatePage from './PrivatePage';
+
 
 function App() {
-  const [axiosError, setAxiosError] = useState({error: false, message:''});
+  const [alertError, setAlertError] = useState({error: false, message:''});
   const [actionDisabled, setActionDisabled] = useState(false);
 
   return (
@@ -18,14 +21,19 @@ function App() {
 
       <GlobalStyled />
 
-      <ErrorContext.Provider value={{ axiosError, setAxiosError }}>
+      <ErrorContext.Provider value={{ alertError, setAlertError }}>
         <ActionsDisabledContext.Provider value={{ actionDisabled, setActionDisabled }}>
 
-          <AxiosError />
+          <AlertError />
           
           <Routes>
             <Route path='/' element={<Login />}/>
             <Route path='/cadastro' element={<ResgisterPage />}/>
+            <Route path='/habitos' element={
+              <PrivatePage>
+                <ResgisterPage />
+              </PrivatePage>
+            }/>
           </Routes>
 
         </ActionsDisabledContext.Provider>

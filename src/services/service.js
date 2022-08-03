@@ -2,6 +2,18 @@ import axios from "axios";
 
 const baseUrl = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit';
 
+function createHeaders () {
+    const auth = localStorage.getItem('trackit');
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${auth.userData.token}`
+        }
+    }
+
+    return config;
+}
+
 function postSignUp (body) {
     const promise = axios.post(`${baseUrl}/auth/sign-up`, body);
     return promise;
@@ -13,37 +25,44 @@ function postLogin (body) {
 }
 
 function postHabit (body) {
-    const promise = axios.post(`${baseUrl}/habits`, body);
+    const config = createHeaders();
+    const promise = axios.post(`${baseUrl}/habits`, body, config);
     return promise;
 }
 
 function getHabits () {
-    const promise = axios.get(`${baseUrl}/habits`);
+    const config = createHeaders();
+    const promise = axios.get(`${baseUrl}/habits`, config);
     return promise;
 }
 
 function deleteHabit (habitID) {
-    const promise = axios.delete(`${baseUrl}/habits/${habitID}`);
+    const config = createHeaders();
+    const promise = axios.delete(`${baseUrl}/habits/${habitID}`, config);
     return promise;
 }
 
 function getTodayHabits () {
-    const promise = axios.get(`${baseUrl}/today`);
+    const config = createHeaders();
+    const promise = axios.get(`${baseUrl}/today`, config);
     return promise;
 }
 
 function postHabitCheck (habitID) {
-    const promise = axios.post(`${baseUrl}/${habitID}/check`);
+    const config = createHeaders();
+    const promise = axios.post(`${baseUrl}/${habitID}/check`, {}, config);
     return promise;
 }
 
 function postHabitUncheck (habitID) {
-    const promise = axios.post(`${baseUrl}/${habitID}/uncheck`);
+    const config = createHeaders();
+    const promise = axios.post(`${baseUrl}/${habitID}/uncheck`, {}, config);
     return promise;
 }
 
 function getHistory () {
-    const promise = axios.get(`${baseUrl}/habits/history/daily`);
+    const config = createHeaders();
+    const promise = axios.get(`${baseUrl}/habits/history/daily`, config);
     return promise;
 }
 
