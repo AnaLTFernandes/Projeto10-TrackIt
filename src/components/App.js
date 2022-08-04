@@ -8,9 +8,10 @@ import ErrorContext from '../contexts/ErrorContext';
 import UserDataContext from '../contexts/UserDataContext';
 
 import AlertMessage from './AlertMessage';
+import PrivatePage from './PrivatePage/PrivatePage';
 import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
-import PrivatePage from './PrivatePage/PrivatePage';
+import HabitsPage from './Habits/HabitsPage';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Route path='/cadastro' element={<ResgisterPage />}/>
               <Route path='/habitos' element={
                 <PrivatePage>
+                  <HabitsPage />
                 </PrivatePage>
               }/>
             </Routes>

@@ -16,7 +16,7 @@ export default function AlertMessage () {
             top={alertMessage.alert ? '30px' : '0'}
             opacity={alertMessage.alert ? '0.98' : '0'}
             color={alertMessage.color}
-        >{alertMessage.message}</Alert>
+        >{alertMessage.message ? alertMessage.message : 'Ocorreu um erro.'}</Alert>
     );
 }
 

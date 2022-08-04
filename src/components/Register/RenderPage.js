@@ -8,6 +8,7 @@ import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
 import Loading from '../Loading';
 
 import logo from '../../assets/images/logo-login.svg';
+import Button from '../../assets/styles/Button';
 
 export default function AcessPage({ data, onSubmit, onChange }) {
   const { actionDisabled } = useContext(ActionsDisabledContext);
@@ -31,9 +32,9 @@ export default function AcessPage({ data, onSubmit, onChange }) {
               </input>
           ))}
 
-        <button disabled={actionDisabled ? true : false}>
+        <Button>
           {actionDisabled ? <Loading size='30px'/> : data.form.textButton}
-        </button>
+        </Button>
 
       </form>
 
@@ -77,6 +78,14 @@ const Container = styled.div`
     color: #d4d4d4;
   }
 
+  input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 30px white inset;
+  }
+  
+  input:-webkit-autofill {
+      -webkit-text-fill-color: black;
+  }
+
   button {
     width: 100%;
     height: 45px;
@@ -101,8 +110,10 @@ const Container = styled.div`
 
   input:disabled {
     background-color: #F2F2F2;
+    -webkit-box-shadow: 0 0 0 30px #F2F2F2 inset;
     border: 1px solid #D4D4D4;
     color: #AFAFAF;
+    -webkit-text-fill-color: #AFAFAF;
   }
 
   button:disabled {
