@@ -5,7 +5,7 @@ import { postLogin } from '../../services/service';
 import ErrorContext from '../../contexts/ErrorContext';
 import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
 
-import AcessPage from './AcessPage';
+import RenderPage from './RenderPage';
 
 export default function Login() {
   const [form, setForm] = useState({});
@@ -67,7 +67,7 @@ export default function Login() {
   return (
     <>
       {dataPage
-        ? <AcessPage data={dataPage} onSubmit={handleForm} 
+        ? <RenderPage data={dataPage} onSubmit={handleForm} 
           onChange={(e => updateForm(e.target.name, e.target.value))} /> 
         : ''
       }

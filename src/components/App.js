@@ -9,7 +9,7 @@ import ErrorContext from '../contexts/ErrorContext';
 import AlertError from './AlertError';
 import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
-import PrivatePage from './PrivatePage';
+import PrivatePage from './PrivatePage/PrivatePage';
 
 
 function App() {
@@ -31,7 +31,6 @@ function App() {
             <Route path='/cadastro' element={<ResgisterPage />}/>
             <Route path='/habitos' element={
               <PrivatePage>
-                <ResgisterPage />
               </PrivatePage>
             }/>
           </Routes>

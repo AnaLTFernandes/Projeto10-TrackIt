@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ErrorContext from '../contexts/ErrorContext';
+import ErrorContext from '../../contexts/ErrorContext';
+import Header from './Header';
 
 const sec = 1000;
 const min = sec * 60;
@@ -18,7 +19,10 @@ export default function PrivatePage ({ children }) {
 
     if (((timeNow - timeLogged) <= (hour * 2)) && auth) {
         return (
-            <>{children}</>
+            <>
+                <Header />
+                {children}
+            </>
         )
     } else {
         setAlertError({error:true, message:'Sessão expirada'});
