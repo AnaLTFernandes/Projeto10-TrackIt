@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+
+import UserDataContext from '../../contexts/UserDataContext';
 
 import logo from '../../assets/images/logo.svg';
 
 export default function Header () {
-
-    const auth = JSON.parse(localStorage.getItem('trackit'));
-    const urlUserImage = auth.userData.image;
+    const { userData } = useContext(UserDataContext);
+    
+    const urlUserImage = userData.dataRegister.userData.image;
 
     return (
         <HeaderWrapper>

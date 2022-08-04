@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import ErrorContext from '../../contexts/ErrorContext';
 import Header from './Header';
+import Footer from './Footer';
 
 const sec = 1000;
 const min = sec * 60;
@@ -22,9 +23,11 @@ export default function PrivatePage ({ children }) {
             <>
                 <Header />
                 {children}
+                <Footer />
             </>
         )
     } else {
+        localStorage.clear('trackit');
         setAlertMessage({alert:true, message:'Sessão expirada'});
         navigate('/');
     }
