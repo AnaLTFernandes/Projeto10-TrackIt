@@ -6,14 +6,14 @@ import { useState } from 'react';
 import ActionsDisabledContext from '../contexts/ActionsDisabledContext';
 import ErrorContext from '../contexts/ErrorContext';
 
-import AlertError from './AlertError';
+import AlertMessage from './AlertMessage';
 import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
 import PrivatePage from './PrivatePage/PrivatePage';
 
 
 function App() {
-  const [alertError, setAlertError] = useState({error: false, message:''});
+  const [alertMessage, setAlertMessage] = useState({alert: false, message:''});
   const [actionDisabled, setActionDisabled] = useState(false);
 
   return (
@@ -21,10 +21,10 @@ function App() {
 
       <GlobalStyled />
 
-      <ErrorContext.Provider value={{ alertError, setAlertError }}>
+      <ErrorContext.Provider value={{ alertMessage, setAlertMessage }}>
         <ActionsDisabledContext.Provider value={{ actionDisabled, setActionDisabled }}>
 
-          <AlertError />
+          <AlertMessage />
           
           <Routes>
             <Route path='/' element={<Login />}/>

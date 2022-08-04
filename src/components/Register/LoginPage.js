@@ -10,7 +10,7 @@ import RenderPage from './RenderPage';
 export default function Login() {
   const [form, setForm] = useState({});
   const { setActionDisabled } = useContext(ActionsDisabledContext);
-  const { setAxiosError } = useContext(ErrorContext);
+  const { setAlertMessage } = useContext(ErrorContext);
 
   const navigate = useNavigate();
   
@@ -40,7 +40,7 @@ export default function Login() {
     const promise = postLogin(form);
 
     promise.catch((e) => {
-      setAxiosError({error:true, message:e.response.data.message});
+      setAlertMessage({alert:true, message:e.response.data.message});
       
       setTimeout(() => {
         setActionDisabled(false);

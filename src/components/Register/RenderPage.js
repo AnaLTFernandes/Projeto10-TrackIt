@@ -100,14 +100,12 @@ const Container = styled.div`
   }
 
   input:disabled {
-  background-color: #F2F2F2;
-  border: 1px solid #D4D4D4;
-  color: #AFAFAF;
-  cursor: default;
+    background-color: #F2F2F2;
+    border: 1px solid #D4D4D4;
+    color: #AFAFAF;
   }
 
   button:disabled {
     opacity: 0.7;
-    cursor: default;
   }
 `;

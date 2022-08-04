@@ -10,7 +10,7 @@ const hour = min * 60;
 
 export default function PrivatePage ({ children }) {
     const navigate = useNavigate();
-    const { setAlertError } = useContext(ErrorContext);
+    const { setAlertMessage } = useContext(ErrorContext);
 
     const auth = JSON.parse(localStorage.getItem('trackit'));
 
@@ -25,7 +25,7 @@ export default function PrivatePage ({ children }) {
             </>
         )
     } else {
-        setAlertError({error:true, message:'Sessão expirada'});
+        setAlertMessage({alert:true, message:'Sessão expirada'});
         navigate('/');
     }
 }

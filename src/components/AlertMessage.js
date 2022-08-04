@@ -2,27 +2,28 @@ import { useContext } from "react";
 import styled from "styled-components";
 import ErrorContext from "../contexts/ErrorContext";
 
-export default function AxiosError () {
-    const { alertError, setAlertError } = useContext(ErrorContext);
+export default function AlertMessage () {
+    const { alertMessage, setAlertMessage } = useContext(ErrorContext);
 
-    if (alertError.error) {
+    if (alertMessage.alert) {
         setTimeout(() => {
-            setAlertError({error:false, message:''});
+            setAlertMessage({alert:false, message:''});
         }, 2000);
     }
 
     return (
         <Alert 
-            top={alertError.error ? '30px' : '0'}
-            opacity={alertError.error ? '0.98' : '0'}
-        >{alertError.message}</Alert>
+            top={alertMessage.alert ? '30px' : '0'}
+            opacity={alertMessage.alert ? '0.98' : '0'}
+            color={alertMessage.color}
+        >{alertMessage.message}</Alert>
     );
 }
 
 const Alert = styled.div`
     width: 270px;
     min-height: 40px;
-    background-color: lightcoral;
+    background-color: ${props => props.color ? props.color : 'lightcoral'};
     position: fixed;
     top: ${props => props.top};
     opacity: ${props => props.opacity};

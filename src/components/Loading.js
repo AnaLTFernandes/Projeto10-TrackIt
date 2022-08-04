@@ -1,6 +1,6 @@
 import { Circles } from "react-loader-spinner";
 
-export default function Loading({ size}) {
+export default function Loading({ size }) {
     return (
         <Circles
             height={size}
