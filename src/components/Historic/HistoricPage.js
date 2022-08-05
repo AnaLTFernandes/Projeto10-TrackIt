@@ -4,7 +4,9 @@ export default function HistoricPage () {
     return (
         <main>
             <Container>
-                <h1>Histórico</h1>
+                <Menu>
+                    <h1>Histórico</h1>
+                </Menu>
                 <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
             </Container>
         </main>
@@ -21,11 +23,14 @@ const Container = styled.div`
         width: fit-content;
         font-size: 22px;
         color: #126BA5;
-        margin: 22px 0;
     }
 
     p {
         font-size: 18px;
         color: #666666;
     }
+`;
+
+const Menu = styled.div`
+    margin: 22px 0;
 `;

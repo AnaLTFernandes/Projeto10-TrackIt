@@ -44,19 +44,19 @@ function deleteHabit (habitID) {
 
 function getTodayHabits () {
     const config = createHeaders();
-    const promise = axios.get(`${baseUrl}/today`, config);
+    const promise = axios.get(`${baseUrl}/habits/today`, config);
     return promise;
 }
 
 function postHabitCheck (habitID) {
     const config = createHeaders();
-    const promise = axios.post(`${baseUrl}/${habitID}/check`, {}, config);
+    const promise = axios.post(`${baseUrl}/habits/${habitID}/check`, {}, config);
     return promise;
 }
 
 function postHabitUncheck (habitID) {
     const config = createHeaders();
-    const promise = axios.post(`${baseUrl}/${habitID}/uncheck`, {}, config);
+    const promise = axios.post(`${baseUrl}/habits/${habitID}/uncheck`, {}, config);
     return promise;
 }
 

@@ -13,6 +13,7 @@ import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
 import HabitsPage from './Habits/HabitsPage';
 import HistoricPage from './Historic/HistoricPage';
+import TodayPage from './Today/TodayPage';
 
 
 function App() {
@@ -39,14 +40,22 @@ function App() {
             <Routes>
               <Route path='/' element={<Login />}/>
               <Route path='/cadastro' element={<ResgisterPage />}/>
+
               <Route path='/habitos' element={
                 <PrivatePage>
                   <HabitsPage />
                 </PrivatePage>
               }/>
+              
               <Route path='/historico' element={
                 <PrivatePage>
                   <HistoricPage />
+                </PrivatePage>
+              }/>
+              
+              <Route path='/hoje' element={
+                <PrivatePage>
+                  <TodayPage />
                 </PrivatePage>
               }/>
             </Routes>

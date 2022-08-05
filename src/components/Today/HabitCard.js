@@ -1,0 +1,73 @@
+import styled from "styled-components";
+import { postHabitCheck, postHabitUncheck } from "../../services/service";
+
+export default function HabitCard ({ name, highestSequence, currentSequence, id, done, updateHabits, setUpdateHabits }) {
+
+    function toggleCheckHabit () {
+        done = !done;
+
+        if (done) {
+
+            const promise = postHabitCheck(id);
+            promise.then(() => setUpdateHabits(!updateHabits));
+        } else {
+
+            const promise = postHabitUncheck(id);
+            promise.then(() => setUpdateHabits(!updateHabits));
+        }
+    }
+    
+    return (
+        <Wrapper key={id}>
+            <div>
+                <HabitTitle>{name}</HabitTitle>
+                <HabitStatus>
+                    <span>Sequência atual: {currentSequence} dias</span>
+                    <span>Seu recorde: {highestSequence} dias</span>
+                </HabitStatus>
+            </div>
+            <Icon done={done}>
+                <ion-icon name="checkbox" onClick={toggleCheckHabit}></ion-icon>
+            </Icon>
+        </Wrapper>
+    );
+}
+
+const Wrapper = styled.div`
+    width: 100%;
+    height: 94px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 20px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const HabitTitle = styled.h2`
+    color: #666666;
+`;
+
+const HabitStatus = styled.div`
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 7px 0 0;
+
+    && {
+        span {
+            font-size: 12px;
+            color: #666666;
+        }
+    }
+`;
+
+const Icon = styled.div`
+    ion-icon {
+        font-size: 80px;
+        color: ${props => props.done ? '#8FC549' : '#ebebeb'};
+    }
+`;
