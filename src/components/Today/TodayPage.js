@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 import { getTodayHabits } from "../../services/service";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import dayjs from "dayjs";
 
 import HabitCard from "./HabitCard";
+import UserDataContext from "../../contexts/UserDataContext";
 
 
 export default function TodayPage() {
@@ -13,17 +14,37 @@ export default function TodayPage() {
     const [habits, setHabits] = useState([]);
     const [updateHabits, setUpdateHabits] = useState(false);
 
+    const { userData } = useContext(UserDataContext);
+    
+    let progress = userData.todayProgress;
+    let percentage = 0;
+
     useEffect(() => {
         const promise = getTodayHabits();
         promise.then((response) => setHabits(response.data));
     }, [updateHabits]);
 
+    if (habits.length > 0) {
+
+        const habitsConcluded = habits.filter(habit => habit.done);
+
+        progress.habitsUnchecked = habits.length;
+        progress.habitsChecked = habitsConcluded.length;
+        percentage = Math.round((progress.habitsChecked / progress.habitsUnchecked) * 100);
+    }
+
+    
     return (
         <main>
-            <Container>
+            <Container progress={percentage}>
                 <Menu>
                     <h1>Sexta, 05/08</h1>
-                    <span>Nenhum hábito concluído ainda</span>
+                    <span>
+                        {userData.todayProgress.habitsChecked === 0
+                            ? 'Nenhum hábito concluído ainda'
+                            : `${percentage}% dos hábitos concluídos`
+                        }
+                    </span>
                 </Menu>
 
                 {habits.length === 0 
@@ -59,7 +80,7 @@ const Container = styled.div`
 
     span {
         font-size: 18px;
-        color: #bababa;
+        color: ${props => (props.progress > 0) ? '#8FC549' : '#bababa'};
     }
 `;
 

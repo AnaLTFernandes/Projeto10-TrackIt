@@ -21,8 +21,10 @@ function App() {
   const [actionDisabled, setActionDisabled] = useState(false);
   const [userData, setUserData] = useState({
     dataRegister: JSON.parse(localStorage.getItem('trackit')),
-    habitsChecked: 0,
-    habitsUnchecled: 0,
+    todayProgress: {
+      habitsChecked: 0,
+      habitsUnchecked: 0,
+    },
     formCanceled: {}
   });
 

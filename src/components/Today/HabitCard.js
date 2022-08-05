@@ -16,14 +16,18 @@ export default function HabitCard ({ name, highestSequence, currentSequence, id,
             promise.then(() => setUpdateHabits(!updateHabits));
         }
     }
+
+    function isHighestSequence () {
+        return ((highestSequence > 0) && (highestSequence===currentSequence));
+    }
     
     return (
         <Wrapper key={id}>
             <div>
                 <HabitTitle>{name}</HabitTitle>
-                <HabitStatus>
-                    <span>Sequência atual: {currentSequence} dias</span>
-                    <span>Seu recorde: {highestSequence} dias</span>
+                <HabitStatus done={done} highest={isHighestSequence()}>
+                    <span>Sequência atual: <b>{currentSequence} dias</b></span>
+                    <span>Seu recorde: <strong>{highestSequence} dias</strong></span>
                 </HabitStatus>
             </div>
             <Icon done={done}>
@@ -61,6 +65,14 @@ const HabitStatus = styled.div`
         span {
             font-size: 12px;
             color: #666666;
+        }
+
+        b {
+            color: ${props => props.done ? '#8FC549' : '#666666'};
+        }
+
+        strong {
+            color: ${props => props.highest ? '#8FC549' : '#666666'};
         }
     }
 `;
