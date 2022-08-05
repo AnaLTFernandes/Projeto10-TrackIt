@@ -55,7 +55,7 @@ export default function Login() {
     });
 
     promise.then(() => {
-      setAlertMessage({alert:true, message:'Cadastro feito com sucesso', color:'rgb(53 185 37)'});
+      setAlertMessage({alert:true, message:'Cadastro feito com sucesso', color:'#8FC549'});
 
       setTimeout(() => {
         setActionDisabled(false);

@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { getTodayHabits } from "../../services/service";
 import { useContext, useEffect, useState } from "react";
 
-import dayjs from "dayjs";
-
 import HabitCard from "./HabitCard";
 import UserDataContext from "../../contexts/UserDataContext";
+import GetDay from "./GetDay";
 
+
+const dateToday = GetDay();
 
 export default function TodayPage() {
 
@@ -38,9 +39,9 @@ export default function TodayPage() {
         <main>
             <Container progress={percentage}>
                 <Menu>
-                    <h1>Sexta, 05/08</h1>
+                    <h1>{dateToday}</h1>
                     <span>
-                        {userData.todayProgress.habitsChecked === 0
+                        {progress.habitsChecked === 0
                             ? 'Nenhum hábito concluído ainda'
                             : `${percentage}% dos hábitos concluídos`
                         }
@@ -48,7 +49,7 @@ export default function TodayPage() {
                 </Menu>
 
                 {habits.length === 0 
-                    ? '' 
+                    ? ''
                     : habits.map((habits) => (
 
                         <HabitCard 
