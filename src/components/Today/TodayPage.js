@@ -32,6 +32,7 @@ export default function TodayPage() {
         progress.habitsUnchecked = habits.length;
         progress.habitsChecked = habitsConcluded.length;
         percentage = Math.round((progress.habitsChecked / progress.habitsUnchecked) * 100);
+        progress.setUpdate(!progress.update);
     }
 
     

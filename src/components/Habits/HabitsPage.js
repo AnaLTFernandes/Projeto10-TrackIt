@@ -12,7 +12,7 @@ export default function HabitsPage() {
     const [habitsList, setHabitsList] = useState([]);
     const [formActive, setFormActive] = useState(false);
     const [updateList, setUpdateList] = useState(false);
-    
+
     
     useEffect(() => {
         const promise = getHabits();

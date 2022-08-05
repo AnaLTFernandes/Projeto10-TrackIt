@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -8,11 +8,16 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 import styled from 'styled-components';
 
-export default function Header () {
+export default function Footer () {
     const { userData } = useContext(UserDataContext);
+    const [update, setUpdate] = useState(true);
 
-    const value = userData.habitsChecked;
-    const maxValue = userData.habitsUnchecled;
+    userData.todayProgress.update = update;
+    userData.todayProgress.setUpdate = setUpdate;
+
+    const value = userData.todayProgress.habitsChecked;
+    const maxValue = userData.todayProgress.habitsUnchecked;
+    
 
     return (
         <FooterWrapper>

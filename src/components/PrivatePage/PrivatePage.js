@@ -18,7 +18,7 @@ export default function PrivatePage ({ children }) {
     const timeNow = +new Date();
     const timeLogged = auth.timestamp;
 
-    if (((timeNow - timeLogged) <= (hour * 2)) && auth) {
+    if (((timeNow - timeLogged) <= (hour * 1)) && auth) {
         return (
             <>
                 <Header />
