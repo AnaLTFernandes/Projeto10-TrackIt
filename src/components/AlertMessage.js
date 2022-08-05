@@ -26,7 +26,7 @@ const Alert = styled.div`
     background-color: ${props => props.color ? props.color : 'lightcoral'};
     position: fixed;
     top: ${props => props.top};
-    z-index: 2;
+    z-index: 3;
     opacity: ${props => props.opacity};
     display: flex;
     align-items: center;

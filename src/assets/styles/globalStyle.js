@@ -134,7 +134,7 @@ const GlobalStyled = createGlobalStyle`
   /* My Styles */
 
   body {
-    height: 100vh;
+    height: 100%;
     font-weight: 400;
     font-family: 'Lexend Deca', sans-serif;
   }

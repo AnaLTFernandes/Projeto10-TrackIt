@@ -5,6 +5,7 @@ import { getHabits } from "../../services/service";
 
 import Button from "../../assets/styles/Button";
 import CreateHabit from "./CreateHabit/CreateHabit";
+import ListHabits from "./ListHabits";
 
 
 export default function HabitsPage() {
@@ -21,7 +22,7 @@ export default function HabitsPage() {
     
     return (
         <main>
-            <Container>
+            <Container height={habitsList.length !== 0 ? '100%' : '70vh'} >
                 <Menu>
                     <h1>Meus hábitos</h1>
                     <Button
@@ -41,7 +42,7 @@ export default function HabitsPage() {
                 }
 
                 {habitsList.length !== 0 
-                    ?   ''
+                    ?   habitsList.map(habit => <ListHabits key={habit.id} habit={habit}/>)
                     :   <p>
                             Você não tem nenhum hábito cadastrado ainda. 
                             Adicione um hábito para começar a trackear!
@@ -54,7 +55,8 @@ export default function HabitsPage() {
 
 const Container = styled.div`
     width: 90%;
-    height: calc(100% - 140px);
+    height: ${props => props.height};
+    margin: 70px 0;
 
     h1 {
         width: fit-content;
