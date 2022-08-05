@@ -1,8 +1,12 @@
 import styled from "styled-components";
+
+import { deleteHabit } from "../../services/service";
+
 import daysButton from "./CreateHabit/DaysButtonsArray";
 
 
-export default function ListHabits ({ habit }) {
+export default function ListHabits ({ habit, id, updateList, setUpdateList }) {
+    
     const days = daysButton.map(day => {
         if (habit.days.includes(day.index)) {
             return {
@@ -16,13 +20,25 @@ export default function ListHabits ({ habit }) {
         }
     })
 
+    function deleteThisHabit (id) {
+        const confirm = window.confirm('Você tem certeza que deseja apagar o hábito? Não é possível resgatá-lo após o processo.');
+        if (confirm) {
+            const promise = deleteHabit(id);
+            promise.then(() => setUpdateList(!updateList));
+        }
+    }
+
     return (
         <Wrapper>
+            
             <span>{habit.name}</span>
+
             <Days>
                 {days.map((day, index) => (<Day key={index} selected={day.selected}>{day.name}</Day>))}
             </Days>
-            <ion-icon name="trash-outline"></ion-icon>
+
+            <ion-icon name="trash-outline" onClick={() => deleteThisHabit(id)}></ion-icon>
+
         </Wrapper>
     );
 }

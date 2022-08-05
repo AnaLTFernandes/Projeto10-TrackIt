@@ -11,15 +11,19 @@ import ListHabits from "./ListHabits";
 export default function HabitsPage() {
     const [habitsList, setHabitsList] = useState([]);
     const [formActive, setFormActive] = useState(false);
+    const [updateList, setUpdateList] = useState(false);
+    
     
     useEffect(() => {
         const promise = getHabits();
+
         promise.then((response) => {
             setFormActive(false);
             setHabitsList(response.data);
         });
-    }, []);
-    
+    }, [updateList]);
+
+
     return (
         <main>
             <Container height={habitsList.length !== 0 ? '100%' : '70vh'} >
@@ -35,14 +39,21 @@ export default function HabitsPage() {
                 </Menu>
 
                 {formActive ? <CreateHabit 
-                                habitsList={habitsList} 
-                                setHabitsList={setHabitsList} 
+                                updateList={updateList} 
+                                setUpdateList={setUpdateList} 
                                 setFormActive={setFormActive}/>
                             : ''
                 }
 
                 {habitsList.length !== 0 
-                    ?   habitsList.map(habit => <ListHabits key={habit.id} habit={habit}/>)
+                    ?   habitsList.map(habit => 
+                            <ListHabits 
+                                key={habit.id} 
+                                id={habit.id} 
+                                habit={habit} 
+                                updateList={updateList}
+                                setUpdateList={setUpdateList}
+                            />)
                     :   <p>
                             Você não tem nenhum hábito cadastrado ainda. 
                             Adicione um hábito para começar a trackear!
@@ -55,6 +66,7 @@ export default function HabitsPage() {
 
 const Container = styled.div`
     width: 90%;
+    min-height: 70vh;
     height: ${props => props.height};
     margin: 70px 0;
 

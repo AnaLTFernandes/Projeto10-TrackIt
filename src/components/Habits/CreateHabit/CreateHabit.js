@@ -14,7 +14,7 @@ import Loading from "../../Loading";
 
 let daysButton = DaysButtonsArrays;
 
-export default function CreateHabit({ setHabitsList, setFormActive }) {
+export default function CreateHabit({ updateList, setUpdateList, setFormActive }) {
     const { actionDisabled, setActionDisabled } = useContext(ActionsDisabledContext);
     const { setAlertMessage } = useContext(ErrorContext);
     const { userData, setUserData } = useContext(UserDataContext);
@@ -51,13 +51,12 @@ export default function CreateHabit({ setHabitsList, setFormActive }) {
                 }, 2100);
             });
 
-            promise.then((response) => {
-                setHabitsList(response.data);
-                
+            promise.then(() => {
                 daysButton = daysButton.map(day => ({...day, selected: false}));
                 setUserData({...userData, formCanceled: {}});
                 setActionDisabled(false);
                 setFormActive(false);
+                setUpdateList(!updateList);
             });
         }
         else {
@@ -88,6 +87,7 @@ export default function CreateHabit({ setHabitsList, setFormActive }) {
 
             <input 
                 required
+                pattern='(([A-Za-z0-9\s]){1,20})'
                 type='text'
                 name="name"
                 placeholder="nome do hábito"
