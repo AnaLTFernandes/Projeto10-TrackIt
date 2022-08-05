@@ -52,6 +52,8 @@ export default function Login() {
         userData:{...response.data},
         timestamp:+new Date()
       }));
+
+      setActionDisabled(false);
       
       navigate('/habitos');
     }); // mudar para rota /hoje

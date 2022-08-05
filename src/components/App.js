@@ -20,7 +20,8 @@ function App() {
   const [userData, setUserData] = useState({
     dataRegister: JSON.parse(localStorage.getItem('trackit')),
     habitsChecked: 0,
-    habitsUnchecled: 0
+    habitsUnchecled: 0,
+    formCanceled: {}
   });
 
   return (

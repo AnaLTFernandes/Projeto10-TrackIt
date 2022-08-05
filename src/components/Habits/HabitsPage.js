@@ -1,17 +1,24 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Button from "../../assets/styles/Button";
+
+import { useEffect, useState } from "react";
 import { getHabits } from "../../services/service";
+
+import Button from "../../assets/styles/Button";
+import CreateHabit from "./CreateHabit/CreateHabit";
 
 
 export default function HabitsPage() {
     const [habitsList, setHabitsList] = useState([]);
-
+    const [formActive, setFormActive] = useState(false);
+    
     useEffect(() => {
         const promise = getHabits();
-        promise.then((response) => setHabitsList(response.data));
+        promise.then((response) => {
+            setFormActive(false);
+            setHabitsList(response.data);
+        });
     }, []);
-
+    
     return (
         <main>
             <Container>
@@ -21,14 +28,25 @@ export default function HabitsPage() {
                        width='40px'
                        height='35px'
                        margin='0'
-                       fontSize='26px'>+</Button>
+                       fontSize='26px'
+                       onClick={() => setFormActive(true)}
+                       disabled={false}>+</Button>
                 </Menu>
+
+                {formActive ? <CreateHabit 
+                                habitsList={habitsList} 
+                                setHabitsList={setHabitsList} 
+                                setFormActive={setFormActive}/>
+                            : ''
+                }
+
                 {habitsList.length !== 0 
-                    ?   console.log('eai')
+                    ?   ''
                     :   <p>
                             Você não tem nenhum hábito cadastrado ainda. 
                             Adicione um hábito para começar a trackear!
-                        </p>}
+                        </p>
+                }
             </Container>
         </main>
     );
