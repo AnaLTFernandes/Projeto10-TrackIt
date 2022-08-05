@@ -12,6 +12,7 @@ import PrivatePage from './PrivatePage/PrivatePage';
 import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
 import HabitsPage from './Habits/HabitsPage';
+import HistoricPage from './Historic/HistoricPage';
 
 
 function App() {
@@ -41,6 +42,11 @@ function App() {
               <Route path='/habitos' element={
                 <PrivatePage>
                   <HabitsPage />
+                </PrivatePage>
+              }/>
+              <Route path='/historico' element={
+                <PrivatePage>
+                  <HistoricPage />
                 </PrivatePage>
               }/>
             </Routes>

@@ -1,0 +1,31 @@
+import styled from "styled-components";
+
+export default function HistoricPage () {
+    return (
+        <main>
+            <Container>
+                <h1>Histórico</h1>
+                <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
+            </Container>
+        </main>
+    );
+}
+
+const Container = styled.div`
+    width: 90%;
+    min-height: 70vh;
+    height: 100%;
+    margin: 70px 0;
+
+    h1 {
+        width: fit-content;
+        font-size: 22px;
+        color: #126BA5;
+        margin: 22px 0;
+    }
+
+    p {
+        font-size: 18px;
+        color: #666666;
+    }
+`;
