@@ -1,13 +1,14 @@
-import { useContext } from 'react';
 import styled from 'styled-components';
 
-import UserDataContext from '../../contexts/UserDataContext';
+import { useContext } from 'react';
+
+import { UserDataContext } from '../../contexts/';
 
 import logo from '../../assets/images/logo.svg';
 
 export default function Header () {
     const { userData } = useContext(UserDataContext);
-    
+
     const urlUserImage = userData.dataRegister.userData.image;
 
     return (
@@ -32,10 +33,15 @@ const HeaderWrapper = styled.header`
     left: 0;
     right: 0;
     z-index: 2;
+    transition: all .2s linear;
 
     img {
         height: 29px;
         width: auto;
+    }
+
+    @media (min-width: 800px) {
+        padding: 0 5%;
     }
 `;
 

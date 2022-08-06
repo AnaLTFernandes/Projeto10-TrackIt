@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import styled from "styled-components";
+import { ActionsDisabledContext } from '../../contexts/';
 
-import ActionsDisabledContext from "../../contexts/ActionsDisabledContext";
+import styled from "styled-components";
 
 export default function Button({ children, ...otherProps }) {
     const { actionDisabled } = useContext(ActionsDisabledContext);

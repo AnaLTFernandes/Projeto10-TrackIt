@@ -164,6 +164,10 @@ const GlobalStyled = createGlobalStyle`
     align-items: center;
     justify-content: center;
   }
+
+  ion-icon {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyled;

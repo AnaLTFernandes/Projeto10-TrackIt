@@ -15,6 +15,7 @@ export default function HistoricPage () {
 
 const Container = styled.div`
     width: 90%;
+    max-width: 600px;
     min-height: 70vh;
     height: 100%;
     margin: 70px 0;

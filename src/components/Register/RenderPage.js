@@ -3,16 +3,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 
-import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
-
-import Loading from '../Loading';
+import { ActionsDisabledContext } from '../../contexts/';
+import { Loading } from '../Actions/';
 
 import logo from '../../assets/images/logo-login.svg';
 import Button from '../../assets/styles/Button';
 
 export default function AcessPage({ data, onSubmit, onChange }) {
   const { actionDisabled } = useContext(ActionsDisabledContext);
-  
+
   return (
     <Container>
 
@@ -21,7 +20,7 @@ export default function AcessPage({ data, onSubmit, onChange }) {
       <form onSubmit={onSubmit}>
           {data.form.inputs.map(({ name, type, placeholder, ...otherProps }, index) =>(
               <input
-                  disabled={actionDisabled ? true : false}
+                  disabled={actionDisabled}
                   key={index}
                   required
                   name={name}
@@ -41,14 +40,15 @@ export default function AcessPage({ data, onSubmit, onChange }) {
       <Link to={data.linkRouter}>
           <span>{data.span}</span>
       </Link>
-      
+
     </Container>
   );
 }
 
 const Container = styled.div`
   width: 90%;
-  height: 100%;
+  max-width: 600px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,7 +81,7 @@ const Container = styled.div`
   input:-webkit-autofill {
       -webkit-box-shadow: 0 0 0 30px white inset;
   }
-  
+
   input:-webkit-autofill {
       -webkit-text-fill-color: black;
   }

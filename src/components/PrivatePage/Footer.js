@@ -1,12 +1,13 @@
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import UserDataContext from '../../contexts/UserDataContext';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { UserDataContext } from '../../contexts/';
 
 import styled from 'styled-components';
+
 
 export default function Footer () {
     const { userData } = useContext(UserDataContext);
@@ -17,11 +18,12 @@ export default function Footer () {
 
     const value = userData.todayProgress.habitsChecked;
     const maxValue = userData.todayProgress.habitsUnchecked;
-    
+
 
     return (
         <FooterWrapper>
             <Link to='/habitos'>Hábitos</Link>
+
             <Link to='/hoje'>
                 <div>
                     <CircularProgressbar
@@ -40,6 +42,7 @@ export default function Footer () {
                     />
                 </div>
             </Link>
+
             <Link to='/historico'>Histórico</Link>
         </FooterWrapper>
     );

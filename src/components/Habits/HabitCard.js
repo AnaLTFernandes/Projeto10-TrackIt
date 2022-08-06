@@ -5,8 +5,14 @@ import { deleteHabit } from "../../services/service";
 import daysButton from "./CreateHabit/DaysButtonsArray";
 
 
-export default function ListHabits ({ habit, id, updateList, setUpdateList }) {
-    
+export default function ListHabits ({
+        habit,
+        updateList,
+        setUpdateList,
+        deleteConfirm,
+        setDeleteConfirm
+    }) {
+
     const days = daysButton.map(day => {
         if (habit.days.includes(day.index)) {
             return {
@@ -18,26 +24,39 @@ export default function ListHabits ({ habit, id, updateList, setUpdateList }) {
             ...day,
             selected:false
         }
-    })
+    });
 
-    function deleteThisHabit (id) {
-        const confirm = window.confirm('Você tem certeza que deseja apagar o hábito? Não é possível resgatá-lo após o processo.');
-        if (confirm) {
-            const promise = deleteHabit(id);
-            promise.then(() => setUpdateList(!updateList));
-        }
+    function deleteThisHabit () {
+        setDeleteConfirm({
+            confimation:false,
+            visible:true,
+            id: habit.id,
+            text:`Você tem certeza que deseja apagar o hábito?
+                Não é possível resgatá-lo após o processo.`
+        });
     }
+
+    if ((deleteConfirm.confimation) && (habit.id === deleteConfirm.id)) {
+        const promise = deleteHabit(habit.id);
+        promise.then(() => {
+            setDeleteConfirm({confimation:false, visible:false});
+            setUpdateList(!updateList);
+        });
+    }
+
 
     return (
         <Wrapper>
-            
+
             <span>{habit.name}</span>
 
             <Days>
-                {days.map((day, index) => (<Day key={index} selected={day.selected}>{day.name}</Day>))}
+                {days.map((day, index) => (
+                    <Day key={index} selected={day.selected}>{day.name}</Day>
+                ))}
             </Days>
 
-            <ion-icon name="trash-outline" onClick={() => deleteThisHabit(id)}></ion-icon>
+            <ion-icon name="trash-outline" onClick={() => deleteThisHabit()}></ion-icon>
 
         </Wrapper>
     );
@@ -83,5 +102,5 @@ const Day = styled.div`
     border: 1px solid ${props => props.selected ? '#CFCFCF' : '#D4D4D4'};
     font-size: 20px;
     color: ${props => props.selected ? 'var(--white)' : '#D4D4D4'};
-    cursor: pointer;
+    cursor: default;
 `;

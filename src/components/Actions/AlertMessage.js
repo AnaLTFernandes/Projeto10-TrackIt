@@ -1,9 +1,9 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import ErrorContext from "../contexts/ErrorContext";
+import { useContext } from "react";
+import { AlertContext } from '../../contexts/';
 
 export default function AlertMessage () {
-    const { alertMessage, setAlertMessage } = useContext(ErrorContext);
+    const { alertMessage, setAlertMessage } = useContext(AlertContext);
 
     if (alertMessage.alert) {
         setTimeout(() => {
@@ -12,7 +12,7 @@ export default function AlertMessage () {
     }
 
     return (
-        <Alert 
+        <Alert
             top={alertMessage.alert ? '30px' : '0'}
             opacity={alertMessage.alert ? '0.98' : '0'}
             color={alertMessage.color}

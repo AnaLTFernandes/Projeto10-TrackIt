@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { getTodayHabits } from "../../services/service";
 import { useContext, useEffect, useState } from "react";
 
+import { UserDataContext } from '../../contexts/';
+
 import HabitCard from "./HabitCard";
-import UserDataContext from "../../contexts/UserDataContext";
 import GetDay from "./GetDay";
+import UpdateProgress from "./UpdateProgress";
 
 
 const dateToday = GetDay();
@@ -16,9 +18,10 @@ export default function TodayPage() {
     const [updateHabits, setUpdateHabits] = useState(false);
 
     const { userData } = useContext(UserDataContext);
-    
+
     let progress = userData.todayProgress;
     let percentage = 0;
+
 
     useEffect(() => {
         const promise = getTodayHabits();
@@ -26,16 +29,11 @@ export default function TodayPage() {
     }, [updateHabits]);
 
     if (habits.length > 0) {
-
-        const habitsConcluded = habits.filter(habit => habit.done);
-
-        progress.habitsUnchecked = habits.length;
-        progress.habitsChecked = habitsConcluded.length;
-        percentage = Math.round((progress.habitsChecked / progress.habitsUnchecked) * 100);
+        percentage = UpdateProgress(habits, progress);
         progress.setUpdate(!progress.update);
     }
 
-    
+
     return (
         <main>
             <Container progress={percentage}>
@@ -49,13 +47,13 @@ export default function TodayPage() {
                     </span>
                 </Menu>
 
-                {habits.length === 0 
+                {habits.length === 0
                     ? ''
                     : habits.map((habits) => (
 
-                        <HabitCard 
-                            key={habits.id} 
-                            {...habits} 
+                        <HabitCard
+                            key={habits.id}
+                            {...habits}
                             updateHabits={updateHabits}
                             setUpdateHabits={setUpdateHabits}
                         />
@@ -69,6 +67,7 @@ export default function TodayPage() {
 
 const Container = styled.div`
     width: 90%;
+    max-width: 600px;
     min-height: 70vh;
     height: ${props => props.height};
     margin: 70px 0;

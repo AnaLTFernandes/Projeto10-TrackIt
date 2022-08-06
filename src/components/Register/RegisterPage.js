@@ -2,18 +2,17 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { postSignUp } from '../../services/service';
-import ErrorContext from '../../contexts/ErrorContext';
-import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
+import { ActionsDisabledContext, AlertContext } from '../../contexts/';
 
 import RenderPage from './RenderPage';
 
 export default function Login() {
   const [form, setForm] = useState({});
   const { setActionDisabled } = useContext(ActionsDisabledContext);
-  const { setAlertMessage } = useContext(ErrorContext);
+  const { setAlertMessage } = useContext(AlertContext);
 
   const navigate = useNavigate();
-  
+
   const dataPage = {
     form: {
       inputs: [{
@@ -40,10 +39,11 @@ export default function Login() {
   }
 
   function handleForm(event) {
+
     event.preventDefault();
 
     setActionDisabled(true);
-    
+
     const promise = postSignUp(form);
 
     promise.catch((e) => {
@@ -69,16 +69,12 @@ export default function Login() {
     setForm({
       ...form,
       [name]:value
-    })
+    });
   }
 
   return (
-    <>
-      {dataPage
-        ? <RenderPage data={dataPage} onSubmit={handleForm} 
-          onChange={(e => updateForm(e.target.name, e.target.value))} /> 
-        : ''
-      }
-    </>
+    <RenderPage data={dataPage} onSubmit={handleForm}
+      onChange={(e => updateForm(e.target.name, e.target.value))}
+    />
   );
 }

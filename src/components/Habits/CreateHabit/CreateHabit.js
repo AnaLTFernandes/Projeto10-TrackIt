@@ -1,22 +1,21 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 
-import ErrorContext from '../../../contexts/ErrorContext';
-import ActionsDisabledContext from '../../../contexts/ActionsDisabledContext';
-import UserDataContext from "../../../contexts/UserDataContext";
-
+import { ActionsDisabledContext, UserDataContext, AlertContext } from '../../../contexts/';
 import { postHabit } from "../../../services/service";
+import { Loading } from "../../Actions/";
+
 import Button from "../../../assets/styles/Button";
 import DayButton from "./DayButton";
 import DaysButtonsArrays from "../CreateHabit/DaysButtonsArray";
-import Loading from "../../Loading";
 
 
 let daysButton = DaysButtonsArrays;
 
 export default function CreateHabit({ updateList, setUpdateList, setFormActive }) {
+
     const { actionDisabled, setActionDisabled } = useContext(ActionsDisabledContext);
-    const { setAlertMessage } = useContext(ErrorContext);
+    const { setAlertMessage } = useContext(AlertContext);
     const { userData, setUserData } = useContext(UserDataContext);
 
     const [form, setForm] = useState({...userData.formCanceled});
@@ -35,8 +34,8 @@ export default function CreateHabit({ updateList, setUpdateList, setFormActive }
         event.preventDefault();
 
         form.days = daysButton
-            .filter(({ selected }) => selected === true)
-            .map((day) =>  day.index);
+            .filter(({ selected }) => selected)
+            .map((day) => day.index);
 
         setActionDisabled(true);
 
@@ -71,7 +70,7 @@ export default function CreateHabit({ updateList, setUpdateList, setFormActive }
 
     function cancelHabit () {
         form.days = daysButton
-            .filter(({ selected }) => selected === true)
+            .filter(({ selected }) => selected)
             .map((day) =>  day.index);
 
         setUserData({...userData, formCanceled: {...form}});
@@ -92,18 +91,22 @@ export default function CreateHabit({ updateList, setUpdateList, setFormActive }
                 name="name"
                 placeholder="nome do hábito"
                 defaultValue={form.name}
-                disabled={actionDisabled ? true : false}
+                disabled={actionDisabled}
                 onChange={e => updateForm({name:e.target.name, value:e.target.value})}>
             </input>
 
             <Days>
                 {daysButton.map((day, index) => 
-                    <DayButton key={index} day={day} disabled={actionDisabled ? true : false} />
+                    <DayButton key={index} day={day} disabled={actionDisabled} />
                 )}
             </Days>
 
             <Buttons>
-                <CancelButton disabled={actionDisabled ? true : false} onClick={cancelHabit}>Cancelar</CancelButton>
+                <CancelButton 
+                    disabled={actionDisabled} 
+                    onClick={cancelHabit}>
+                        Cancelar
+                </CancelButton>
                 <Button
                     width='84px'
                     height='35px'
@@ -177,6 +180,7 @@ const CancelButton = styled.div`
     background-color: var(--white);
     color: var(--light-blue-theme);
     opacity: ${props => props.disabled ? '0.7' : '1' };
+    cursor: pointer;
 `;
 
 const Days = styled.div`

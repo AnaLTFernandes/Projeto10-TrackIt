@@ -3,11 +3,9 @@ import GlobalStyled from '../assets/styles/globalStyle';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
-import ActionsDisabledContext from '../contexts/ActionsDisabledContext';
-import ErrorContext from '../contexts/ErrorContext';
-import UserDataContext from '../contexts/UserDataContext';
+import { ActionsDisabledContext, UserDataContext, AlertContext } from '../contexts/';
+import { AlertMessage } from './Actions/';
 
-import AlertMessage from './AlertMessage';
 import PrivatePage from './PrivatePage/PrivatePage';
 import Login from './Register/LoginPage';
 import ResgisterPage from './Register/RegisterPage';
@@ -33,7 +31,7 @@ function App() {
 
       <GlobalStyled />
 
-      <ErrorContext.Provider value={{ alertMessage, setAlertMessage }}>
+      <AlertContext.Provider value={{ alertMessage, setAlertMessage }}>
         <ActionsDisabledContext.Provider value={{ actionDisabled, setActionDisabled }}>
           <UserDataContext.Provider value={{ userData, setUserData }}>
 
@@ -64,7 +62,7 @@ function App() {
 
           </UserDataContext.Provider>
         </ActionsDisabledContext.Provider>
-      </ErrorContext.Provider>
+      </AlertContext.Provider>
 
     </BrowserRouter>
   );

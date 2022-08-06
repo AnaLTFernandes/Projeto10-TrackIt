@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import { postHabitCheck, postHabitUncheck } from "../../services/service";
 
-export default function HabitCard ({ name, highestSequence, currentSequence, id, done, updateHabits, setUpdateHabits }) {
+export default function HabitCard ({ 
+        id,
+        done,
+        name,
+        highestSequence,
+        currentSequence,
+        updateHabits,
+        setUpdateHabits
+    }) {
 
     function toggleCheckHabit () {
         done = !done;
@@ -22,14 +30,19 @@ export default function HabitCard ({ name, highestSequence, currentSequence, id,
     }
     
     return (
-        <Wrapper key={id}>
+        <Wrapper>
+
             <div>
                 <HabitTitle>{name}</HabitTitle>
+
                 <HabitStatus done={done} highest={isHighestSequence()}>
-                    <span>Sequência atual: <b>{currentSequence} dias</b></span>
-                    <span>Seu recorde: <strong>{highestSequence} dias</strong></span>
+
+                    <span>Sequência atual: <b> {currentSequence} dias </b></span>
+                    <span>Seu recorde: <strong> {highestSequence} dias </strong></span>
+
                 </HabitStatus>
             </div>
+
             <Icon done={done}>
                 <ion-icon name="checkbox" onClick={toggleCheckHabit}></ion-icon>
             </Icon>

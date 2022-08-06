@@ -2,61 +2,65 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { postLogin } from '../../services/service';
-import ErrorContext from '../../contexts/ErrorContext';
-import ActionsDisabledContext from '../../contexts/ActionsDisabledContext';
+import { ActionsDisabledContext, AlertContext, UserDataContext } from '../../contexts/';
 
 import RenderPage from './RenderPage';
+
 
 export default function Login() {
   const [form, setForm] = useState({});
   const { setActionDisabled } = useContext(ActionsDisabledContext);
-  const { setAlertMessage } = useContext(ErrorContext);
+  const { userData, setUserData } = useContext(UserDataContext);
+  const { setAlertMessage } = useContext(AlertContext);
 
   const navigate = useNavigate();
-  
+
   const dataPage = {
     form: {
       inputs: [{
         name:'email',
         type:'email',
         placeholder:'email',
-        pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+.com"
+        pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+.com",
       }, {
         name:'password',
         placeholder:'senha',
         type:'text',
       }],
-      textButton:'Entrar'
+      textButton:'Entrar',
     },
     span:'Não tem uma conta? Cadastre-se!',
-    linkRouter:'/cadastro'
+    linkRouter:'/cadastro',
   }
 
   function handleForm(event) {
+
     event.preventDefault();
 
     setActionDisabled(true);
-    
+  
     const promise = postLogin(form);
 
     promise.catch((e) => {
+
       setAlertMessage({alert:true, message:e.response.data.message});
-      
+
       setTimeout(() => {
         setActionDisabled(false);
       }, 2100);
     });
 
     promise.then((response) => {
+
       localStorage.setItem('trackit', JSON.stringify({
         userData:{...response.data},
-        timestamp:+new Date()
+        timestamp:+new Date(),
       }));
 
       setActionDisabled(false);
-      
-      navigate('/habitos');
-    }); // mudar para rota /hoje
+
+      navigate('/hoje');
+    });
   }
 
   function updateForm(name, value) {
@@ -67,12 +71,8 @@ export default function Login() {
   }
 
   return (
-    <>
-      {dataPage
-        ? <RenderPage data={dataPage} onSubmit={handleForm} 
-          onChange={(e => updateForm(e.target.name, e.target.value))} /> 
-        : ''
-      }
-    </>
+    <RenderPage data={dataPage} onSubmit={handleForm}
+      onChange={(e => updateForm(e.target.name, e.target.value))}
+    />
   );
 }

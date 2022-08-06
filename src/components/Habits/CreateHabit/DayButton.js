@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function DayButton({ day, disabled }) {
-    const [clicked, setClicked] = useState(day.selected || false);
+    const [clicked, setClicked] = useState(day.selected);
 
     function toggleSelectDay () {
         if (!disabled) {
@@ -12,8 +12,8 @@ export default function DayButton({ day, disabled }) {
     }
 
     return (
-        <Day 
-            onClick={toggleSelectDay} 
+        <Day
+            onClick={toggleSelectDay}
             clicked={clicked}
         >{day.name}</Day>);
 }

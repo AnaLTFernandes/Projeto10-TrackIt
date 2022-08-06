@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ErrorContext from '../../contexts/ErrorContext';
+import { AlertContext } from '../../contexts/';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -11,7 +11,7 @@ const hour = min * 60;
 
 export default function PrivatePage ({ children }) {
     const navigate = useNavigate();
-    const { setAlertMessage } = useContext(ErrorContext);
+    const { setAlertMessage } = useContext(AlertContext);
 
     const auth = JSON.parse(localStorage.getItem('trackit'));
 
@@ -25,7 +25,7 @@ export default function PrivatePage ({ children }) {
                 {children}
                 <Footer />
             </>
-        )
+        );
     } else {
         localStorage.clear('trackit');
         setAlertMessage({alert:true, message:'Sessão expirada'});
