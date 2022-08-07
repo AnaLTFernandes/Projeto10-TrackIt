@@ -6,7 +6,7 @@ import { UserDataContext } from '../../contexts/';
 
 import logo from '../../assets/images/logo.svg';
 
-export default function Header () {
+export default function Header ({ setMenu }) {
     const { userData } = useContext(UserDataContext);
 
     const urlUserImage = userData.dataRegister.userData.image;
@@ -14,7 +14,7 @@ export default function Header () {
     return (
         <HeaderWrapper>
             <img alt='trackit' src={logo}/>
-            <UserImage alt='user' src={urlUserImage}/>
+            <UserImage alt='user' src={urlUserImage} onClick={() => setMenu(true)}/>
         </HeaderWrapper>
     );
 }
@@ -51,5 +51,6 @@ const UserImage = styled.img`
         height: 51px;
         border-radius: 50%;
         object-fit: cover;
+        cursor: pointer;
     }
 `;

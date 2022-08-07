@@ -3,15 +3,15 @@ import styled from "styled-components";
 import Button from "../../assets/styles/Button";
 import Background from "./Background";
 
-export default function ConfirmAction ({ deleteConfirm, setDeleteConfirm }) {
+export default function ConfirmAction ({ actionConfirm, setActionConfirm }) {
 
     return (
         <Background>
             <Wrapper>
-                <p>{deleteConfirm.text}</p>
+                <p>{actionConfirm.text}</p>
                 <Buttons>
                     <CancelButton 
-                        onClick={()=>setDeleteConfirm({...deleteConfirm, confimation:false,visible:false})}>
+                        onClick={()=>setActionConfirm({...actionConfirm, confimation:false,visible:false})}>
                             Cancelar
                     </CancelButton>
                     <Button
@@ -19,7 +19,7 @@ export default function ConfirmAction ({ deleteConfirm, setDeleteConfirm }) {
                         height='40px'
                         margin='0'
                         fontSize='18px'
-                        onClick={()=>setDeleteConfirm({...deleteConfirm, confimation:true,visible:false})}>
+                        onClick={()=>setActionConfirm({...actionConfirm, confimation:true,visible:false})}>
                             Confirmar
                     </Button>
                 </Buttons>

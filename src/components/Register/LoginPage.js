@@ -2,18 +2,21 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { postLogin } from '../../services/service';
-import { ActionsDisabledContext, AlertContext, UserDataContext } from '../../contexts/';
+import { ActionsDisabledContext, AlertContext } from '../../contexts/';
 
 import RenderPage from './RenderPage';
+import VerifyPrefer from '../VerifyPrefer';
 
 
 export default function Login() {
   const [form, setForm] = useState({});
   const { setActionDisabled } = useContext(ActionsDisabledContext);
-  const { userData, setUserData } = useContext(UserDataContext);
   const { setAlertMessage } = useContext(AlertContext);
 
   const navigate = useNavigate();
+
+
+  VerifyPrefer();
 
   const dataPage = {
     form: {
@@ -55,6 +58,7 @@ export default function Login() {
       localStorage.setItem('trackit', JSON.stringify({
         userData:{...response.data},
         timestamp:+new Date(),
+        keepLogin: false,
       }));
 
       setActionDisabled(false);

@@ -1,27 +1,26 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AlertContext } from '../../contexts/';
 import Header from './Header';
 import Footer from './Footer';
+import UserMenu from './UserMenu';
+import IsValidated from './IsValidated';
 
-const sec = 1000;
-const min = sec * 60;
-const hour = min * 60;
 
 export default function PrivatePage ({ children }) {
-    const navigate = useNavigate();
+    const [userMenu, setUserMenu] = useState(false);
     const { setAlertMessage } = useContext(AlertContext);
 
-    const auth = JSON.parse(localStorage.getItem('trackit'));
+    const navigate = useNavigate();
+    const isValidated = IsValidated();
 
-    const timeNow = +new Date();
-    const timeLogged = auth.timestamp;
-
-    if (((timeNow - timeLogged) <= (hour * 1)) && auth) {
+    if (isValidated) {
         return (
             <>
-                <Header />
+                {userMenu ? <UserMenu setMenu={setUserMenu} /> : ''}
+
+                <Header setMenu={setUserMenu} />
                 {children}
                 <Footer />
             </>

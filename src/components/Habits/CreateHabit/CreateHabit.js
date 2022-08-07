@@ -86,7 +86,7 @@ export default function CreateHabit({ updateList, setUpdateList, setFormActive }
 
             <input 
                 required
-                pattern='(([A-Za-z0-9\s]){1,20})'
+                pattern='(([A-Za-zá-ùÁ-Ùã-õ0-9\s]){1,20})'
                 type='text'
                 name="name"
                 placeholder="nome do hábito"

@@ -28,7 +28,11 @@ export default function HabitsPage() {
 
     return (
         <main>
-            {deleteConfirm.visible ? <ConfirmAction setDeleteConfirm={setDeleteConfirm} deleteConfirm={deleteConfirm}/> : ''}
+            {deleteConfirm.visible ? 
+                <ConfirmAction setActionConfirm={setDeleteConfirm} actionConfirm={deleteConfirm}/>
+                : ''
+            }
+
             <Container height={habitsList.length !== 0 ? '100%' : '70vh'} >
                 <Menu>
                     <h1>Meus hábitos</h1>

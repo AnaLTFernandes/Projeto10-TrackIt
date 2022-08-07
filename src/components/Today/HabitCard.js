@@ -26,7 +26,9 @@ export default function HabitCard ({
     }
 
     function isHighestSequence () {
-        return ((highestSequence > 0) && (highestSequence===currentSequence));
+        return ((done) &&
+            (highestSequence === currentSequence) &&
+            (highestSequence > 0));
     }
     
     return (

@@ -1,13 +1,29 @@
 import styled from "styled-components";
+import CalendarSection from "./Calendar/CalendarSection";
+
+import { useEffect, useState } from "react";
+import { getHistory } from '../../services/service';
 
 export default function HistoricPage () {
+    const [history, setHistory] = useState([]);
+  
+  
+    useEffect(() => {
+      const promise = getHistory();
+      promise.then((response) => setHistory(response.data));
+    }, []);
+
+
     return (
         <main>
             <Container>
                 <Menu>
                     <h1>Histórico</h1>
                 </Menu>
-                <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
+                {history.length === 0
+                    ? <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
+                    : <CalendarSection history={history} />
+                }
             </Container>
         </main>
     );
@@ -19,6 +35,9 @@ const Container = styled.div`
     min-height: 70vh;
     height: 100%;
     margin: 70px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h1 {
         width: fit-content;
@@ -33,5 +52,7 @@ const Container = styled.div`
 `;
 
 const Menu = styled.div`
+    width: 100%;
+    max-width: 500px;
     margin: 22px 0;
 `;
