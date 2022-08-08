@@ -4,9 +4,13 @@ function IsValidated () {
     const sec = 1000;
     const min = sec * 60;
     const hour = min * 60;
+    let keepLogin;
 
     const auth = JSON.parse(localStorage.getItem('trackit'));
-    const keepLogin = auth.keepLogin;
+    
+    if (auth.keepLogin) {
+        keepLogin = auth.keepLogin;
+    }
 
     const timeNow = +new Date();
     const timeLogged = auth.timestamp;

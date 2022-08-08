@@ -8,8 +8,10 @@ export default function VerifyPrefer () {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (userData.dataRegister.keepLogin) {
-            navigate('/hoje');
+        if (userData.dataRegister) {
+            if (userData.dataRegister.keepLogin) {
+                navigate('/hoje');
+            }
         } else {
             return;
         }

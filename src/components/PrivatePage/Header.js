@@ -1,15 +1,27 @@
 import styled from 'styled-components';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { UserDataContext } from '../../contexts/';
 
 import logo from '../../assets/images/logo.svg';
 
 export default function Header ({ setMenu }) {
-    const { userData } = useContext(UserDataContext);
+    const { userData, setUserData } = useContext(UserDataContext);
+    let urlUserImage;
 
-    const urlUserImage = userData.dataRegister.userData.image;
+    useEffect(() => {
+        setUserData({
+            ...userData,
+            dataRegister: JSON.parse(localStorage.getItem('trackit'))
+        });
+    }, []);
+
+    if (userData.dataRegister) {
+        if (userData.dataRegister.userData.image) {
+            urlUserImage = userData.dataRegister.userData.image;
+        }
+    }
 
     return (
         <HeaderWrapper>

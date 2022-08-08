@@ -9,6 +9,7 @@ import { Loading } from '../Actions/';
 import logo from '../../assets/images/logo-login.svg';
 import Button from '../../assets/styles/Button';
 
+
 export default function AcessPage({ data, onSubmit, onChange }) {
   const { actionDisabled } = useContext(ActionsDisabledContext);
 
