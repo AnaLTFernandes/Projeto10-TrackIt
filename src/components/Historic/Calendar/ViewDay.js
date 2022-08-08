@@ -104,7 +104,7 @@ const Menu = styled.div`
 const Habit = styled.div`
     && { 
         width: 100%;
-        height: 70px;
+        height: 45px;
         border-radius: 5px;
         margin-bottom: 10px;
         padding: 15px;

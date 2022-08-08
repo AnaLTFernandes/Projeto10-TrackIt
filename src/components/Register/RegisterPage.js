@@ -22,7 +22,7 @@ export default function Login() {
       }, {
         name:'password',
         placeholder:'senha',
-        type:'text',
+        type:'password',
       }, {
         name:'name',
         placeholder:'nome',
