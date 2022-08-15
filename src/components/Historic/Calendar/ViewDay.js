@@ -41,6 +41,8 @@ export default function ViewDay ({ date, history, setViewDay }) {
 
 
 const Container = styled.div`
+    overflow: scroll;
+
     && {
         width: 100%;
         max-width: 600px;
@@ -56,7 +58,7 @@ const Container = styled.div`
 
         & > div {
             width: 90%;
-            margin: 0 auto;
+            margin: 0 auto 205px;
         }
     }
 
