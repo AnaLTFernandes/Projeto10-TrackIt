@@ -70,7 +70,6 @@ Rastreie seus hábitos aqui: https://projeto10-trackit-analtfernandes.vercel.app
 <img align="left" alt="react-axios" height="25px" src="https://img.shields.io/badge/React-axios-success" />
 <img align="left" alt="react-router-dom" height="25px" src="https://img.shields.io/badge/React-router--dom-success" />
 <img align="left" alt="react-calendar" height="25px" src="https://img.shields.io/badge/React-calendar-success" />
-<br />
 <img align="left" alt="styled-components" height="25px" src="https://img.shields.io/badge/style-styled--components-violet" />
 
 
