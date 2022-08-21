@@ -1,8 +1,12 @@
 # :chart_with_upwards_trend: Track It
 
-Página web de rastreamento de hábitos que possibilita não só a criação de uma rotina, mas também o acompanhamento dos hábitos que devem ser feitos no respectivo dia, e o progresso do usuário no mesmo. Além de um histórico que apresenta os dias em que o usuário completou todos os hábitos programados ou não.
+Página web de rastreamento de hábitos que possibilita não só a criação de uma rotina, mas também o acompanhamento dos hábitos que devem ser feitos hoje. Além de um histórico que apresenta os dias em que o usuário completou todos os hábitos programados ou não.
 
-<div align=center></div>
+<div align=center>
+ 
+  ![Track It gif](https://user-images.githubusercontent.com/97851922/185800469-6387caf6-0ed1-42e4-a959-c21a1703034b.gif)
+  
+</div>
 
 Rastreie seus hábitos aqui: https://projeto10-trackit-analtfernandes.vercel.app/
 
