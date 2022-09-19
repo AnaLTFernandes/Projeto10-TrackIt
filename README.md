@@ -69,12 +69,11 @@ Rastreie seus hábitos aqui: https://projeto10-trackit-analtfernandes.vercel.app
 
 ## :heavy_check_mark: Tecnologias utilizadas
 <img align="left" alt="dayjs" height="25px" src="https://img.shields.io/badge/-dayjs-important" />
+<img align="left" alt="axios" height="25px" src="https://img.shields.io/badge/-axios-success" />
 <img align="left" alt="react" height="25px" src="https://img.shields.io/badge/-React-5ED3F3?logo=react&logoColor=white" />
-<img align="left" alt="react-components" height="25px" src="https://img.shields.io/badge/React-components-success" />
-<img align="left" alt="react-axios" height="25px" src="https://img.shields.io/badge/React-axios-success" />
-<img align="left" alt="react-router-dom" height="25px" src="https://img.shields.io/badge/React-router--dom-success" />
-<img align="left" alt="react-calendar" height="25px" src="https://img.shields.io/badge/React-calendar-success" />
-<img align="left" alt="styled-components" height="25px" src="https://img.shields.io/badge/style-styled--components-violet" />
+<img align="left" alt="react-router" height="25px" src="https://img.shields.io/badge/React-Router-5ED3F3" />
+<img align="left" alt="react-calendar" height="25px" src="https://img.shields.io/badge/React-Calendar-5ED3F3" />
+<img align="left" alt="styled-components" height="25px" src="https://img.shields.io/badge/styled-components-violet?logo=styled-components" />
 
 
 <br />
