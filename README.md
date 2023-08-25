@@ -1,5 +1,7 @@
 # :chart_with_upwards_trend: Track It
 
+![Badge Finalizado](https://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=success&style=for-the-badge)
+
 Página web de rastreamento de hábitos que possibilita não só a criação de uma rotina, mas também o acompanhamento dos hábitos que devem ser feitos hoje. Além de um histórico que apresenta os dias em que o usuário completou todos os hábitos programados ou não.
 
 <div align=center>
